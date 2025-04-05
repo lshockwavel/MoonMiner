@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'
+    integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <script src="app.js" defer></script>
+    <title>Moon Miner</title>
+</head>
+<body>
+    <header>
+        <div>
+            <h1 class="fw-bold text-center">Moon Miner
+                <span class="mdi mdi-moon-waxing-crescent"></span>
+                </h1>
+        </div>
+    </header>
+    <main class="d-flex flex-column">
+        <img onclick="mine()" src="https://opengameart.org/sites/default/files/styles/medium/public/pixel_moon.png" 
+             alt="Pixel Moon" class="mx-auto d-block cursor-pointer" id="moon-image" title="Well... click me!">
+        <div class="text-center">
+            <h2 class="fw-bold">Click to mine cheese!</h2>
+        </div>
+    </main>
+    <footer>
+        <div class="container-fluid">
+            <section class="row h-100 mb-3">
+                <!-- UPDATE For Data changes -->
+                <div class="col-4 text-center">
+                    <div id="ClickCounter" class="card custom-card">
+                        <h2 class="fw-bold">Total per Click:</h2>
+                        <p><span class="counter">Click Score: 1</span></p>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div id="Total" class="card custom-card">
+                        <h2 class="fw-bold">Total Cheese</h2>
+                        <p><span id="CheeseCount">Cheese: 0</span></p>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div id="Timer" class="card custom-card">
+                        <!-- <div id="timer-bar" class="progress" role="progressbar" valuenow="100" valuemin="0" valuemax="100">
+                            <div class="progress-bar" style="width: 100%"></div>
+                          </div> -->
+                          <h2 class="fw-bold">Total timer: </h2>
+                          <h3 class="timer-count text-danger">3</h3>
+                        <p><span id="automation-counter">Automation Cheese: 0</span></p>
+                    </div>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-6">
+                    <section class="row">
+                        <div class="col-6">
+                            <h2 class="fw-bold">Click upgrades</h2>
+                            <div id="click-upgrades" class="card custom-card">
+                                <div class="d-flex">
+                                    <div class="card-body d-flex align-items-center">
+                                        <button id="knife" class="btn btn-primary click-upgrade-button" onclick="buyClickUpgrade('knife')">100</button>
+                                        <div>
+                                            <p>Knife</p>
+                                            <p id="knife">+ 1</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="card-body d-flex align-items-center">
+                                        <button id="drill" class="btn btn-primary click-upgrade-button" onclick="buyClickUpgrade('drill')">250</button>
+                                        <div>
+                                            <p class="mb-0">Drill</p>
+                                            <p id="drill">+ 5</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="fw-bold">Automatic Upgrades</h2>
+                            <div id="automatic-upgrades" class="card custom-card">
+                                <div class="d-flex">
+                                    <div class="card-body d-flex align-items-center">
+                                        <button id="mousetronaut" class="btn btn-primary auto-upgrade-button" onclick="buyAutoUpgrade('mousetronaut')"></button>
+                                        <div>
+                                            <p>Mousetronaut</p>
+                                            <p id="mousetronaut">+ 10 / 3s</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="card-body d-flex align-items-center">
+                                        <button id="space-station" class="btn btn-primary auto-upgrade-button" onclick="buyAutoUpgrade('space-station')"></button>
+                                        <div>
+                                            <p>Space-Station</p>
+                                            <p id="space-station">+ 100 / 3s</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-6">
+                    <section class="row">
+                        <div class="col-6">
+                            <h2 class="fw-bold">Click Stats</h2>
+                            <div id="click-stats" class="card custom-card">
+                                <div class="card-body d-flex align-items-center">
+                                    <span class="d-flex">
+                                        <p id="quantity">1</p>
+                                        <p> Knives => </p>
+                                        <p id="knifeTotal">1</p>
+                                    </span>
+                                </div>
+                                <div class="card-body d-flex align-items-center">
+                                    <span class="d-flex">
+                                        <p id="drillCount">1</p>
+                                        <p> Drills => </p>
+                                        <p id="drillTotal">1</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="fw-bold">Automation Stats</h2>
+                            <div id="auto-stats" class="card  custom-card">
+                                <div class="card-body d-flex align-items-center">
+                                    <span class="d-flex">
+                                        <p id="mousetronautCount">1</p>
+                                        <p> Mousetronaut => </p>
+                                        <p id="mousetronautTotal">1</p>
+                                    </span>
+                                </div>
+                                <div class="card-body d-flex align-items-center">
+                                    <span class="d-flex">
+                                        <p id="spaceStationCount">1</p>
+                                        <p> SpaceStation => </p>
+                                        <p id="spaceStationTotal">1</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </section>
+                    
+                </div>
+            </section>
+
+        </div>
+    </footer>
+</body>
+</html>

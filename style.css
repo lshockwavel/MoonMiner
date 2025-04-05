@@ -1,0 +1,52 @@
+body, html {
+    height: 100%; /* Ensure the body and html take up the full viewport height */
+    margin: 0; /* Remove default margins */
+}
+
+main {
+    flex: 1; /* Allow the main content to grow and fill the remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+main img {
+    max-height: 100%; /* Prevent the image from exceeding the available height */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Optional: Maintain aspect ratio */
+}
+
+main img {
+    cursor: pointer;
+    height: 350px;
+}
+
+body {
+    background-image: url(https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    min-height: 100dvh;
+}
+
+p {
+    font-family: "Jersey 10", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+h1, h2 {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white; /* Sets the text color to white */
+}
+
+.card h2 {
+    color: black; /* Example style */
+}
+
+.custom-card {
+    background-color: #ffcc00; /* Example: Yellow background */
+    color: #000; /* Example: Black text */
+}
