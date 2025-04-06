@@ -25,7 +25,7 @@
         <img onclick="mine()" src="https://opengameart.org/sites/default/files/styles/medium/public/pixel_moon.png" 
              alt="Pixel Moon" class="mx-auto d-block cursor-pointer" id="moon-image" title="Well... click me!">
         <div class="text-center">
-            <h2 class="fw-bold">Click to mine cheese!</h2>
+            <h2 class="fw-bold mb-5 mt-1">Click the "Moon" to mine cheese!</h2>
         </div>
     </main>
     <footer>
@@ -65,8 +65,7 @@
                                     <div class="card-body d-flex align-items-center">
                                         <button id="knife" class="btn btn-primary click-upgrade-button" onclick="buyClickUpgrade('knife')">100</button>
                                         <div>
-                                            <p>Knife</p>
-                                            <p id="knife">+ 1</p>
+                                            <p id="knife" class="mb-0 ms-2">Adds 1 cheese per Click</p>
                                         </div>
                                     </div>
                                 </div>
@@ -74,8 +73,7 @@
                                     <div class="card-body d-flex align-items-center">
                                         <button id="drill" class="btn btn-primary click-upgrade-button" onclick="buyClickUpgrade('drill')">250</button>
                                         <div>
-                                            <p class="mb-0">Drill</p>
-                                            <p id="drill">+ 5</p>
+                                            <p id="drill" class="mb-0 ms-2">Adds 5 cheese per Click</p>
                                         </div>
                                     </div>
                                 </div>
@@ -84,22 +82,16 @@
                         <div class="col-6">
                             <h2 class="fw-bold">Automatic Upgrades</h2>
                             <div id="automatic-upgrades" class="card custom-card">
-                                <div class="d-flex">
-                                    <div class="card-body d-flex align-items-center">
+                                <div>
+                                    <div class="card-body d-flex  justify-content-between align-items-center">
                                         <button id="mousetronaut" class="btn btn-primary auto-upgrade-button" onclick="buyAutoUpgrade('mousetronaut')"></button>
-                                        <div>
-                                            <p>Mousetronaut</p>
-                                            <p id="mousetronaut">+ 10 / 3s</p>
-                                        </div>
+                                        <p id="mousetronaut" class="mb-0 ms-2">Adds 10 cheeses per 3 Seconds</p>
                                     </div>
                                 </div>
-                                <div class="d-flex">
-                                    <div class="card-body d-flex align-items-center">
+                                <div>
+                                    <div class="card-body d-flex justify-content-between align-items-center">
                                         <button id="space-station" class="btn btn-primary auto-upgrade-button" onclick="buyAutoUpgrade('space-station')"></button>
-                                        <div>
-                                            <p>Space-Station</p>
-                                            <p id="space-station">+ 100 / 3s</p>
-                                        </div>
+                                        <p id="space-station" class="mb-0 ms-2">Adds 100 cheeses per 3 Seconds</p>
                                     </div>
                                 </div>
                             </div>
@@ -110,42 +102,50 @@
                     <section class="row">
                         <div class="col-6">
                             <h2 class="fw-bold">Click Stats</h2>
-                            <div id="click-stats" class="card custom-card">
-                                <div class="card-body d-flex align-items-center">
+                            <div id="click-stats" class="card custom-card p-2">
+                                <!-- <div class="card-body d-flex align-items-center">
                                     <span class="d-flex">
-                                        <p id="quantity">1</p>
-                                        <p> Knives => </p>
-                                        <p id="knifeTotal">1</p>
+                                        <p> Qty: <span class="number-box">0</span>=> Total Cheese: 
+                                        <span class="number-box">0</span></p>
                                     </span>
-                                </div>
-                                <div class="card-body d-flex align-items-center">
+                                </div> -->
+                                <!-- <div class="card-body d-flex align-items-center">
                                     <span class="d-flex">
-                                        <p id="drillCount">1</p>
-                                        <p> Drills => </p>
-                                        <p id="drillTotal">1</p>
+                                        <p>mousetronaut Qty: <span class="number-box">0</span>=> Total Cheese: 
+                                            <span class="number-box">0</span></p>
                                     </span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col-6">
                             <h2 class="fw-bold">Automation Stats</h2>
-                            <div id="auto-stats" class="card  custom-card">
-                                <div class="card-body d-flex align-items-center">
+                            <div id="auto-stats" class="card custom-card p-2">
+                                <!-- <div class="card-body">
+                                    <p>mousetronaut Qty: <span class="number-box">0</span>=> Total Cheese: 
+                                        <span class="number-box">0</span></p>
+                                </div> -->
+                                <!-- <div class="card-body d-flex align-items-center">
                                     <span class="d-flex">
-                                        <p id="mousetronautCount">1</p>
-                                        <p> Mousetronaut => </p>
-                                        <p id="mousetronautTotal">1</p>
+                                        <p>space-station Qty: <span class="number-box">0</span>=> Total Cheese: 
+                                            <span class="number-box">0</span></p>
                                     </span>
-                                </div>
-                                <div class="card-body d-flex align-items-center">
-                                    <span class="d-flex">
-                                        <p id="spaceStationCount">1</p>
-                                        <p> SpaceStation => </p>
-                                        <p id="spaceStationTotal">1</p>
-                                    </span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
+                        <!-- Playing around with html and elements to update above -->
+                        <!-- <div class="col-6">
+                            <h2 class="fw-bold">Automation Stats</h2>
+                            <div class="card custom-card">
+                                <div class="card-body">
+                                    <p>mousetronaut Qty: <span class="number-box">0</span>=> Total Cheese: 
+                                        <span class="number-box">0</span></p>
+                                </div>
+                                <div id="auto-stats" class="card-body">
+                                        <p>mousetronaut Qty: <span class="number-box">0</span>=> Total Cheese: 
+                                            <span class="number-box">0</span></p>
+                                </div>
+                            </div>
+                        </div> -->
                         
                     </section>
                     

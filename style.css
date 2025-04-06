@@ -1,20 +1,23 @@
-body, html {
-    height: 100%; /* Ensure the body and html take up the full viewport height */
-    margin: 0; /* Remove default margins */
-}
+/* Trying to increase the height of the img to fill in the space. */
+/* body, html {
+    height: 100%;
+    margin: 0;
+} */
 
-main {
-    flex: 1; /* Allow the main content to grow and fill the remaining space */
+/* Trying to increase the height of the img to fill in the space. */
+/* main {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-}
+    justify-content: center;
+    align-items: center;
+} */
 
+/* Trying to increase the height of the img to fill in the space. */
 main img {
-    max-height: 100%; /* Prevent the image from exceeding the available height */
-    height: auto; /* Maintain aspect ratio */
-    width: auto; /* Optional: Maintain aspect ratio */
+    max-height: 100%;
+    height: auto;
+    width: auto;
 }
 
 main img {
@@ -39,14 +42,24 @@ h1, h2 {
     font-family: "Pixelify Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    color: white; /* Sets the text color to white */
+    color: white;
 }
 
+/* Updating titles inside of the cards */
 .card h2 {
-    color: black; /* Example style */
+    color: black;
 }
 
 .custom-card {
-    background-color: #ffcc00; /* Example: Yellow background */
-    color: #000; /* Example: Black text */
+    background-color: #ffcc00;
+    color: #000;
+}
+
+.number-box {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background-color: #ffeea9;
+    font-weight: bold;
 }

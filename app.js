@@ -58,32 +58,47 @@ function updateCounter() {
   updateCheeseTooltip(); // Update the tooltip
 }
 
+// Function to update the tooltip for the cheese amount when hovering over the moon image
 function updateCheeseTooltip() {
   const moonImage = document.getElementById('moon-image');
-  moonImage.setAttribute('title', `Cheese: ${cheese}`);
+
+  // Update the tooltip with the current cheese amount if above 0
+  if (cheese > 0) {
+    moonImage.setAttribute('title', `Cheese: ${cheese}`);
+  }
 }
 
+
+// Function to update the stats for click and automatic upgrades
 function updateStats() {
+
+  //Updates the stats for the Click Upgrades
   const statsElem = document.getElementById('click-stats');
   statsElem.innerHTML = ''; // Clear previous stats
 
   clickUpgrades.forEach(upgrade => {
     const statElem = document.createElement('p');
-    statElem.innerText = `${upgrade.name}: ${upgrade.quantity} (Bonus: ${upgrade.bonus})`;
+    statElem.innerHTML = `${upgrade.name} Qty: <span class="number-box">${upgrade.quantity}</span> 
+        => Total Cheese: <span class="number-box">${upgrade.bonus * upgrade.quantity}</span>`;
     statsElem.appendChild(statElem);
-  });
-  
+    });
+
+  //Updates the stats for the Automatic Upgrades
   const autosElem = document.getElementById('auto-stats');
   autosElem.innerHTML = ''; // Clear previous stats
 
   automaticUpgrades.forEach(upgrade => {
     const autoElem = document.createElement('p');
-    autoElem.innerText = `${upgrade.name}: ${upgrade.quantity} (Bonus: ${upgrade.bonus})`;
+    autoElem.innerHTML = `${upgrade.name} Qty: <span class="number-box">${upgrade.quantity}</span> 
+    => Total Cheese: <span class="number-box">${upgrade.bonus * upgrade.quantity}</span>`;
     autosElem.appendChild(autoElem);
   });
 }
 
+// Function to update the click counter and automation score
 function updateClickCounter() {
+
+  // Update the click score based on the upgrades purchased "Total per Click"
   const clickCounterElem = document.getElementById('ClickCounter');
   let clickScore = 0;
   clickUpgrades.forEach(upgrade => {
@@ -93,27 +108,31 @@ function updateClickCounter() {
   const upgradeButtons = clickCounterElem.querySelector('.counter')
   upgradeButtons.innerText = `Click Score: ${clickScore}`;
 
+  // Update the automation score based on the automatic upgrades purchased "total timer"
   const automationCounterElem = document.getElementById('automation-counter');
   let automationScore = 0;
   for (let i = 0; i < automaticUpgrades.length; i++) {
     automationScore += automaticUpgrades[i].quantity * automaticUpgrades[i].bonus; // Calculate total cheese from automatic upgrades
   }
   automationCounterElem.innerText = `+${automationScore}`; // Update automation score display
-
 }
 
+// Function to update the upgrade buttons based on cheese amount
 function updateUpgradeButtons() {
+
+  // Update the click upgrade buttons based on cheese amount as well as disable buttons if not enough cheese
   const clickUpgradeButtons = document.querySelectorAll('.click-upgrade-button');
   clickUpgradeButtons.forEach((button, index) => {
-    button.innerText = `${clickUpgrades[index].name} (${clickUpgrades[index].price})`;
+    button.innerHTML = `${clickUpgrades[index].name} <span class="mdi mdi-cheese"></span>${clickUpgrades[index].price}`;
     button.disabled = cheese < clickUpgrades[index].price;
   });
 
+  // Update the automatic upgrade buttons based on cheese amount as well as disable buttons if not enough cheese
   const autoUpgradeButtons = document.querySelectorAll('.auto-upgrade-button');
   autoUpgradeButtons.forEach((button, index) => {
-    button.innerText = `${automaticUpgrades[index].name} (${automaticUpgrades[index].price})`;
-    button.disabled = cheese < automaticUpgrades[index].price;
-  });
+  button.innerHTML = `${automaticUpgrades[index].name} <span class="mdi mdi-cheese"></span>${automaticUpgrades[index].price}`;
+  button.disabled = cheese < automaticUpgrades[index].price;
+});
 }
 
 // function buyKnifeUpgrade() {
@@ -131,6 +150,7 @@ function updateUpgradeButtons() {
 //   }
 // }
 
+// function to buy click upgrades depending on the name of the upgrade. 
 function buyClickUpgrade(name) {
   const upgrade = clickUpgrades.find(upgrade => upgrade.name === name);
   if (cheese >= upgrade.price) {
@@ -141,11 +161,16 @@ function buyClickUpgrade(name) {
     updateCounter();
     updateUpgradeButtons();
     updateStats();
-  } else {
+  }
+
+  // Gives a warning if not enough cheese. Since button disabled is already in place with
+  // function updateUpgradeButtons, this is just a backup.
+  else {
     alert('Not enough cheese!');
   }
 }
 
+// function to buy automatic upgrades depending on the name of the upgrade. 
 function buyAutoUpgrade(name) {
   const upgrade = automaticUpgrades.find(upgrade => upgrade.name === name);
   if (cheese >= upgrade.price) {
@@ -156,11 +181,16 @@ function buyAutoUpgrade(name) {
     updateCounter();
     updateUpgradeButtons();
     updateStats();
-  } else {
+  }
+
+  // Gives a warning if not enough cheese. Since button disabled is already in place with
+  // function updateUpgradeButtons, this is just a backup.
+  else {
     alert('Not enough cheese!');
   }
 }
 
+// Function to collect cheese from automatic upgrades every 3 seconds
 function collectAutoUpgrades() {
   for (let i = 0; i < automaticUpgrades.length; i++) {
     cheese += automaticUpgrades[i].quantity * automaticUpgrades[i].bonus;
@@ -169,6 +199,8 @@ function collectAutoUpgrades() {
   updateUpgradeButtons();
 }
 
+
+// Function to start the timer loop for the number of seconds
 function startTimer() {
   const timerCountElem = document.querySelector('.timer-count');
   let timer = 3; // Start at 3 seconds
@@ -186,6 +218,7 @@ function startTimer() {
 // Start the timer loop
 startTimer();
 
+//This function shrinks the timer bar every 3 seconds. It is not currently in use.
 // function shrinkBar() {
 //   const timerBar = document.querySelector('#timer-bar .progress-bar');
 //   const duration = 3000; // 3 seconds
